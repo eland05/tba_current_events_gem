@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require '.lib/blue_alliance_events'
+
+TBACurrentEvents::CLI.new.call
