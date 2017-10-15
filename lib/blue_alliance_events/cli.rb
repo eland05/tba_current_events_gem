@@ -1,7 +1,7 @@
-class TBACurrentEvents::CLI
+class BlueAllianceEvents::CLI
 
   def call
-    puts "FIRST Robotics Competition Current Events"
+    puts "FIRST Robotics Competition Current Events:"
     list_events
     choose_event
     goodbye
