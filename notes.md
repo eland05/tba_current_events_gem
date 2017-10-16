@@ -12,3 +12,10 @@
 2. get CLI working with fake data (list current events)
 3. Which event?
 4. Event website, webcast, teams
+
+
+What is an event?
+  An event has a name
+  An event has a date
+  An event has a location
+  An event has a site

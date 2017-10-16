@@ -1,31 +1,30 @@
 class BlueAllianceEvents::CLI
 
   def call
-    puts "FIRST Robotics Competition Current Events:"
     list_events
     choose_event
     goodbye
   end
 
   def list_events
-    #scrap events
-    puts <<-DOC
-      1. Great Lakes Bay Bot Bash - date - location - event info link - webcast link
-      2. RiverRage21 - date - location - event info link - webcast link
-    DOC
+    puts "The Blue Alliance FIRST Robotics Competition Current Events:"
+    #scrape site
+    @events = BlueAllianceEvents::Event.all
+    @events.each.with_index(1) do |event, i|
+      puts "#{i}. #{event.name} - #{event.date} - #{event.location}"
+    end
   end
 
   def choose_event
     input = nil
-    while input != "exit"
+    while input != "exit" && input.to_i
       puts "Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "more info on event 1"
-      when "2"
-        puts "more info on event 1"
-      when "list"
+
+      if input.to_i > 0
+        the_event = @events[input.to_i-1]
+        puts puts "#{the_event.name} - #{the_event.date} - #{the_event.location} - #{the_event.site}"
+      elsif input == "list"
         list_events
       else puts "Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
       end
@@ -33,7 +32,7 @@ class BlueAllianceEvents::CLI
   end
 
   def goodbye
-    puts 'Hope to see you there!!!'
+    puts 'FRC: More than robots! Hope to see you there!'
   end
 
 end
