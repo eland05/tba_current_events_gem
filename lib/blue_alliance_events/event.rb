@@ -10,7 +10,7 @@ class BlueAllianceEvents::Event
 
   def self.scrape_events
     doc = Nokogiri::HTML(open("https://www.thebluealliance.com/"))
-    binding.pry
+      
     event = self.new
     event.name = doc.search("td a").first.text
     event.date = doc.search("td time").first.text
@@ -36,3 +36,5 @@ end
 #event_2.site = "https://www.thebluealliance.com/event/2017mnri"
 
 #[event_1, event_2]
+
+#  events = doc.search("tr").attr("itemtype")
