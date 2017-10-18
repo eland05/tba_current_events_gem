@@ -19,3 +19,7 @@ What is an event?
   An event has a date
   An event has a location
   An event has a site
+
+Issues to fix:
+1. Why happens if there are more or less than 5 events?
+2. Where did the extra 0 come from in my when @events is created?

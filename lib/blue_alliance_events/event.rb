@@ -1,26 +1,24 @@
 class BlueAllianceEvents::Event
   attr_accessor :name, :date, :location, :site
+  @@all = []
 
   def self.all
     #scrape The Blue Alliance
-    @events = []
-    @events << self.scrape_events
-    @events
+    @@all << scrape_events
   end
 
   def self.scrape_events
     doc = Nokogiri::HTML(open("https://www.thebluealliance.com/"))
 
-    event_rows = doc.search("tr")
-    event_rows.each do |event_row|
-      event = self.new
-      event.name = event_row.search("td a").attr("title").text
-      event.date = event_row.search("td time").text
-      event.location = event_row.search("td small").first.text
-      event_site = event_row.search("td a").attr("href")
+    event_rows = doc.search("tr")[1..5]
+    event_rows.each do |row|
+      @@all << event = self.new
+      event.name = row.search("td a").attr("title").text.strip
+      event.date = row.search("td time").text
+      event.location = row.search("td small").first.text
+      event_site = row.search("td a").attr("href")
       event.site = "https://www.thebluealliance.com#{event_site}"
     end
-
 
     #event = self.new
     #event.name = doc.search("td a").first.text
@@ -29,7 +27,7 @@ class BlueAllianceEvents::Event
     #event_site = doc.search("td a").first.attr("href")
     #event.site = "https://www.thebluealliance.com#{event_site}"
 
-    event
+
   end
 end
 
