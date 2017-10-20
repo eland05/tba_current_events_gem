@@ -28,10 +28,13 @@ class BlueAllianceEvents::CLI
         puts puts "Event website for #{the_event.name} - #{the_event.date} - #{the_event.location}
         #{the_event.site}"
         puts "Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
+
       elsif input == "list"
         list_events
+
       elsif input == "exit"
         goodbye
+
       else puts "Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
       end
     end
@@ -40,5 +43,4 @@ class BlueAllianceEvents::CLI
   def goodbye
     puts 'FRC: More than robots! Hope to see you there!'
   end
-
 end

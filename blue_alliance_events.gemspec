@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Erin Land'"]
   spec.email         = ["'erinland05@gmail.com'"]
 
-  spec.summary       = "This gem will scrape this weeks current events from The Blue Alliance Website"
+  spec.summary       = "This gem will scrape this week's current events from The Blue Alliance Website"
   spec.description   =
   spec.homepage      = "https://github.com/eland05/tba_current_events_gem"
 
