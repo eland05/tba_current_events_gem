@@ -10,7 +10,9 @@ class BlueAllianceEvents::Event
   def self.scrape_events
     doc = Nokogiri::HTML(open("https://www.thebluealliance.com/"))
 
-    event_rows = doc.search("tr")[1..5]
+    event_table = doc.search("table.event-table")
+    event_rows = event_table.search("tr")[1..-1]
+
     event_rows.each do |row|
       @@all << event = self.new
       event.name = row.search("td a").attr("title").text.strip
