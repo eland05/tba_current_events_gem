@@ -25,7 +25,7 @@ class BlueAllianceEvents::CLI
 
       if input.to_i > 0 && input.to_i <= @events.size
         the_event = @events[input.to_i-1]
-        puts puts "Event website for #{the_event.name} - #{the_event.date} - #{the_event.location}
+        puts "Event website for #{the_event.name} - #{the_event.date} - #{the_event.location}
         #{the_event.site}"
         puts "Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
 
