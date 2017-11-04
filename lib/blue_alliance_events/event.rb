@@ -2,24 +2,24 @@ class BlueAllianceEvents::Event
   attr_accessor :name, :date, :location, :site
   @@all = []
 
-  def self.all
-    #scrape The Blue Alliance
-    @@all << scrape_events
+  def initialize
+    @@all << self
   end
 
-  def self.scrape_events
-    doc = Nokogiri::HTML(open("https://www.thebluealliance.com/"))
+  def self.all
+    #scrape The Blue Alliance
+    @@all
+  end
 
-    event_table = doc.search("table.event-table")
-    event_rows = event_table.search("tr")[1..-1]
+  def self.search_name(keyword)
+    @@all.select do |e|
+      e.name.downcase.include? "#{keyword.downcase}"
+    end
+  end
 
-    event_rows.each do |row|
-      @@all << event = self.new
-      event.name = row.search("td a").attr("title").text.strip
-      event.date = row.search("td time").text
-      event.location = row.search("td small").first.text
-      event_site = row.search("td a").attr("href")
-      event.site = "https://www.thebluealliance.com#{event_site}"
+  def self.search_location(location)
+    @@all.select do |e|
+      e.location.downcase.include? "#{location.downcase}"
     end
   end
 end

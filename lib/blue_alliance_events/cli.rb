@@ -1,6 +1,7 @@
 class BlueAllianceEvents::CLI
 
   def call
+    BlueAllianceEvents::Scrapper.scrape_events
     list_events
     choose_event
   end
@@ -9,10 +10,11 @@ class BlueAllianceEvents::CLI
     puts "Welcome to The Blue Alliance FIRST Robotics Competition Current Events:
     "
     #scrape site
-    @events = BlueAllianceEvents::Event.all[0..-2]
+    @events = BlueAllianceEvents::Event.all
     @events.each.with_index(1) do |event, i|
       puts "#{i}. #{event.name} - #{event.date} - #{event.location}"
     end
+
     puts "
     Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
   end
@@ -35,7 +37,8 @@ class BlueAllianceEvents::CLI
       elsif input == "exit"
         goodbye
 
-      else puts "Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
+      else puts "Error: Invalid Entry
+        Enter the number of the event you would like more information on, type list to see the events again or exit to leave"
       end
     end
   end

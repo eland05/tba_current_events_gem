@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
+
 require "bundler/setup"
-require './lib/blue_alliance_events'
+#require '/home/erinland05-61911/code/blue_alliance_events/lib/blue_alliance_events'
+require_relative '../lib/blue_alliance_events'
 
 BlueAllianceEvents::CLI.new.call
